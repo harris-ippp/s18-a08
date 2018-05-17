@@ -1,5 +1,5 @@
 # Assignment 8: APIs and Regression
-In this assignment you will use a "hidden" API in the Virginia elections site to download  county-level presidential election results and then analyze the results. Please commit python scripts `a1.py, a2.py, b1.py, b2.py, b3.py, b4.py` and the images specified below.
+In this assignment you will use a "hidden" API in the Virginia elections site to download  county-level presidential election results and then analyze the results. Please commit python scripts `a1.py, a2.py, b1.py, b2.py, b3.py, b4.py, ANSWERS>txt` and the images specified below.
 
 # Part A: API
 Your task is to download all of the CSVs for all of the presidential general elections in Virginia from their [Elections Database website](http://historical.elections.virginia.gov/) and save them as `data/1924.csv,...,data/2016.csv`.
