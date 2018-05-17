@@ -24,7 +24,7 @@ http://historical.elections.virginia.gov/elections/download/80871/precincts_incl
 
 Note that `80871` is the identifier for that the website is using for this election.
 
-1. Create a CSV file called `election_ids.csv` with two columns: `year` and `election_id` where `election_id` is the id used by the website for the presidential election in the corresponding year. (6 points)
+1. Create a CSV file called `election_ids.csv` with two columns: `year` and `election_id` where `election_id` is the id used by the website for the presidential election in the corresponding year. (4 points)
 
     Hint: The result should start like this:
     
@@ -48,7 +48,7 @@ Note that `80871` is the identifier for that the website is using for this elect
     
     So you can find the election rows by looking for `tr` tags with a class of `election_item` (not that spaces in the class string denote multiple classes). You can find their ids by grabbing the `id` attribute and extracting the number from the end. You can find the year of the election in the text of the next `td` tag.
 
-2. Get and save the CSV for each year to files `data/1924.csv,...,data/2016.csv`. (6 points)
+2. Get and save the CSV for each year to files `data/1924.csv,...,data/2016.csv`. (4 points)
 
     Hint: To iterate over the rows in a DataFrame you can use the following pattern:
     
@@ -61,20 +61,21 @@ Note that `80871` is the identifier for that the website is using for this elect
 
 # Part B: Analyze
 
-1. Create a new CSV called `republican_shares.csv` with three columns: Year, County, and Republican Share by following these steps:
+1. Create a new CSV called `republican_shares.csv` with three columns: Year, County/City, and Republican Share (the proportion of all votes cast for the Republican candidate). Note that the `County/City` column is not quite accurate because there are congressional district subdivisions (e.g. `Chesterfield County (CD 4)`). So you'll have to aggregate the data up to the true `County/City` level. (8 points)
 
-    i. For each CSV file into a dataframe read it and add a column called 'Republican Share' with the proportion of votes going to the Republican in each race.
-    
-        Hint: The CSVs are weirdly formatted where the second row contains the party and the numbers have commas in them. So one strategy is:
+    Hints:
 
-        - Grab the parties row as a series using `df.loc[0]`.
-        - Find the Republican column (assuming there is one and only one!) by subsetting the parties series to those entries where the value is `'Republican'` and take the first one.
-        - [Drop](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.drop.html) the first row from the dataframe
-        - The numbers have commas so you can't divide them yet. Write a function called `to_number(series)` that takes a series of numbers and removes the commas and converts them to numbers.
-    
-    ii. Add a column called `Year` that's a constant in each year's dataframe and equal to the year.
-    iii. Subset to just the `County/City`, `Year` and `Republican Share` columns.
-    iv. Use `pandas.concat()` to conatenate all of these DataFrames and write the result to `republican_shares.csv`
+    - For each year's DataFrame, find the Republican candidate's column.
+    - [Drop](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.drop.html) the first row; subset to just the Republican's and Total Votes Cast columns, convert those to numbers (they are currently strings with commas in them)
+    - Remove the congressional districts in the `County/City` column, e.g. replace `Chesterfield County (CD 4)` to just `Chesterfield County`.
+    - Find the Republican and total votes cast in each county using a `groupby().sum()`.
+    - Find the `Republican Share`.
+    - Subset to just the Republican Share, and add a column called Year that is the year for this election.
+    - Finally use [`pd.concat()`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.concat.html) to concatenate the DataFrames for each election and write the result to `republican_shares.csv`
 
 
-2. 
+2. Create a plot with four time series of Republican vote shares in the following counties: Accomack, Amelia County, Amherst, Alleghany. Make sure your plot has meaningful axis labels and a title. (4 points)
+
+3. Select at least 3 variables from the 2016 5-year ACS whose relationship with 2016 Republican vote share you are interested in exploring. Download them at the County level for Virginia using the Census API and save a CSV called `acs.csv`:
+
+    Hint: Use the `in` parameter in the API to select Virginia and the `for` parameter to specify counties. Convert the result to a dataframe as in lecture and then use `to_csv()`.
