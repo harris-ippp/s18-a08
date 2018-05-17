@@ -82,4 +82,6 @@ Note that `80871` is the identifier for that the website is using for this elect
 
     Hint: Look at the [examples](https://api.census.gov/data/2016/acs/acs5/examples.html)  (note the URL for 2016 is slightly different from 2014) and use the `in` parameter in the API to select Virginia and the `for` parameter to specify counties. Convert the result to a dataframe as in lecture and then use `to_csv()`.
 
-4. Merge the ACS data from (B3) with the Republican vote share data from (B1) and generate a pairplot using seaborn and save it as `pairplot.png`. Also run a OLS regression of the Republican vote share on the ACS variables and save the coefficients in a CSV called `coefficients.csv`. Summarize your findings in a sentence or two in `ANSWERS.txt`.
+4. Merge the ACS data from (B3) with the Republican vote share data from (B1) for the year 2016. Generate a pairplot using seaborn and save it as `pairplot.png`. Also run an OLS regression of the Republican vote share on the ACS variables and save the coefficients in a CSV called `coefficients.csv`. Summarize your findings in a sentence or two in `ANSWERS.txt`.
+
+    Hint: For the merge, remove ', Virginia' from the ACS and deal with the mismatched cases, e.g. by making everything upper case.
