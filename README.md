@@ -76,6 +76,6 @@ Note that `80871` is the identifier for that the website is using for this elect
 
 2. Create a plot with four time series of Republican vote shares in the following counties: Accomack, Amelia County, Amherst, Alleghany. Make sure your plot has meaningful axis labels and a title. (4 points)
 
-3. Select at least 3 variables from the 2016 5-year ACS whose relationship with 2016 Republican vote share you are interested in exploring. Download them at the County level for Virginia using the Census API and save a CSV called `acs.csv`:
+3. Select at least 3 [variables](https://api.census.gov/data/2016/acs/acs5/profile/variables.html) from the 2016 5-year ACS whose relationship with 2016 Republican vote share you are interested in exploring. See the Variable Types table [here](https://www.census.gov/data/developers/data-sets/acs-5year/data-notes.html) for more information on variable types. Download them at the County level for Virginia using the Census API and save a CSV called `acs.csv`.
 
-    Hint: Use the `in` parameter in the API to select Virginia and the `for` parameter to specify counties. Convert the result to a dataframe as in lecture and then use `to_csv()`.
+    Hint: Look at the [examples](https://api.census.gov/data/2016/acs/acs5/examples.html)  (note the URL for 2016 is slightly different from 2014) and use the `in` parameter in the API to select Virginia and the `for` parameter to specify counties. Convert the result to a dataframe as in lecture and then use `to_csv()`.
