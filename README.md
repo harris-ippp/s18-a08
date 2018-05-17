@@ -61,7 +61,7 @@ Note that `80871` is the identifier for that the website is using for this elect
 
 # Part B: Analyze
 
-1. Create a new CSV called `republican_shares.csv` with three columns: Year, County/City, and Republican Share (the proportion of all votes cast for the Republican candidate). Note that the `County/City` column is not quite accurate because there are congressional district subdivisions (e.g. `Chesterfield County (CD 4)`). So you'll have to aggregate the data up to the true `County/City` level. (8 points)
+1. Create a new CSV called `republican_shares.csv` with three columns: Year, County/City, and `R_SHARE` where the last column is the proportion of all votes cast for the Republican candidate. Note that the `County/City` column in the downloaded CSVs is not quite accurate because there are congressional district subdivisions (e.g. `Chesterfield County (CD 4)`). So you'll have to aggregate the data up to the true `County/City` level. (8 points)
 
     Hints:
 
@@ -69,13 +69,17 @@ Note that `80871` is the identifier for that the website is using for this elect
     - [Drop](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.drop.html) the first row; subset to just the Republican's and Total Votes Cast columns, convert those to numbers (they are currently strings with commas in them)
     - Remove the congressional districts in the `County/City` column, e.g. replace `Chesterfield County (CD 4)` to just `Chesterfield County`.
     - Find the Republican and total votes cast in each county using a `groupby().sum()`.
-    - Find the `Republican Share`.
-    - Subset to just the Republican Share, and add a column called Year that is the year for this election.
+    - Find the `R_SHARE`.
+    - Subset to just the `R_SHARE`, and add a column called Year that is the year for this election.
     - Finally use [`pd.concat()`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.concat.html) to concatenate the DataFrames for each election and write the result to `republican_shares.csv`
 
 
 2. Create a plot with four time series of Republican vote shares in the following counties: Accomack, Amelia County, Amherst, Alleghany. Make sure your plot has meaningful axis labels and a title. (4 points)
 
-3. Select at least 3 [variables](https://api.census.gov/data/2016/acs/acs5/profile/variables.html) from the 2016 5-year ACS whose relationship with 2016 Republican vote share you are interested in exploring. See the Variable Types table [here](https://www.census.gov/data/developers/data-sets/acs-5year/data-notes.html) for more information on variable types. Download them at the County level for Virginia using the Census API and save a CSV called `acs.csv`.
+    Hint: Use [set_index()](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.set_index.html) to create a multi-index, select the `R_SHARE` column so you have a Series and then unstack.
+
+3. Select at least 3 [variables](https://api.census.gov/data/2016/acs/acs5/profile/variables.html) from the 2016 5-year ACS whose relationship with 2016 Republican vote share you are interested in exploring. See the Variable Types table [here](https://www.census.gov/data/developers/data-sets/acs-5year/data-notes.html) for more information on variable types. Download them at the County level for Virginia using the Census API and rename the columns to something more meaningful before saving the data to a CSV called `acs.csv`.
 
     Hint: Look at the [examples](https://api.census.gov/data/2016/acs/acs5/examples.html)  (note the URL for 2016 is slightly different from 2014) and use the `in` parameter in the API to select Virginia and the `for` parameter to specify counties. Convert the result to a dataframe as in lecture and then use `to_csv()`.
+
+4. Merge the ACS data from (B3) with the Republican vote share data from (B1) and generate a pairplot using seaborn and save it as `pairplot.png`. Also run a OLS regression of the Republican vote share on the ACS variables and save the coefficients in a CSV called `coefficients.csv`. Summarize your findings in a sentence or two in `ANSWERS.txt`.
