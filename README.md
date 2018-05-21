@@ -80,7 +80,7 @@ Note that `80871` is the identifier for that the website is using for this elect
 
 3. Select at least 3 [variables](https://api.census.gov/data/2016/acs/acs5/profile/variables.html) from the 2016 5-year ACS whose relationship with 2016 Republican vote share you are interested in exploring. See the Variable Types table [here](https://www.census.gov/data/developers/data-sets/acs-5year/data-notes.html) for more information on variable types. Download them at the County level for Virginia using the Census API and rename the columns to something more meaningful before saving the data to a CSV called `acs.csv`. (4 points)
 
-    Hint: Look at the [examples](https://api.census.gov/data/2016/acs/acs5/examples.html)  (note the URL for 2016 is slightly different from 2014) and use the `in` parameter in the API to select Virginia and the `for` parameter to specify counties. Convert the result to a dataframe as in lecture and then use `to_csv()`.
+    Hint: Look at the [examples](https://api.census.gov/data/2016/acs/acs5/profile/examples.html)  (note the URL for 2016 is slightly different from 2014) and use the `in` parameter in the API to select Virginia and the `for` parameter to specify counties. Convert the result to a dataframe as in lecture and then use `to_csv()`.
 
 4. Merge the ACS data from (B3) with the Republican vote share data from (B1) for the year 2016. Generate a pairplot using seaborn and save it as `pairplot.png`. Also run an OLS regression of the Republican vote share on the ACS variables and save the coefficients in a CSV called `coefficients.csv`. Summarize (Do not worry about being rigorous here) your findings in a sentence or two in `ANSWERS.txt`. (4 points)
 
