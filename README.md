@@ -7,7 +7,7 @@ Your task is to download all of the CSVs for all of the presidential general ele
 First, visit the website in your browser and use the interface to find a list of all presidential general elections. The URL will look like this:
 
 ```
-http://historical.elections.virginia.gov/elections/search/year_from:1924/year_to:2016/office_id:1
+http://historical.elections.virginia.gov/elections/search/year_from:1924/year_to:2016/office_id:1/stage:General
 ```
 
 Click on one of them, say 2016, and then click "See Details for this Election" and you'll be taken to this URL:
